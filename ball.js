@@ -6,6 +6,12 @@ class Ball {
     this.y = height/2;
     this.width = width;
     this.height = height;
+    this.fabricObject = new fabric.Circle({
+      fill: 'black',
+      radius: 20,
+      left: this.x,
+      top: this.y
+    });
   }
 
   tick() {
@@ -27,9 +33,13 @@ class Ball {
         this.movingUp = true;
       }
     }
+    this.fabricObject.set({
+      left: this.x,
+      top: this.y
+    });
   }
 
-  render(context) {
-
+  render(fabricCanvas) {
+    fabricCanvas.add(this.fabricObject);
   }
 }

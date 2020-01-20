@@ -33,7 +33,7 @@ class Ball {
   
   render(stage) {
     this.graphic.beginFill(0x000000, 1);
-    this.graphic.drawCircle(this.x, this.y, 5);
+    this.graphic.drawCircle(0, 0, 5);
     
     stage.addChild(this.graphic);
   }

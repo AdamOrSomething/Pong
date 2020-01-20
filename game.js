@@ -19,8 +19,7 @@ class Game {
   }
   
   start() {
-    setInterval(() => {
-      this.ball.tick();
-    }, 10);
+    this.ball.tick();
+    requestAnimationFrame(() => {this.start()});
   }
 }

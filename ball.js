@@ -2,44 +2,39 @@ class Ball {
   constructor(width, height) {
     this.movingLeft = Math.random() >= 0.5;
     this.movingUp = Math.random() >= 0.5;
-    this.x = width/2;
-    this.y = height/2;
+    this.x = width / 2;
+    this.y = height / 2;
     this.width = width;
     this.height = height;
-    this.fabricObject = new fabric.Circle({
-      fill: 'black',
-      radius: 20,
-      left: this.x,
-      top: this.y
-    });
+    this.graphic = new PIXI.Graphics();
   }
-
+  
   tick() {
-    if(this.movingLeft) {
-      if(--this.x === 0) {
+    if (this.movingLeft) {
+      if (--this.x === 0) {
         this.movingLeft = false;
       }
     } else {
-      if(++this.x === this.width) {
+      if (++this.x === this.width) {
         this.movingLeft = true;
       }
     }
-    if(this.movingUp) {
-      if(++this.y === this.height) {
+    if (this.movingUp) {
+      if (++this.y === this.height) {
         this.movingUp = false;
       }
     } else {
-      if(--this.y === 0) {
+      if (--this.y === 0) {
         this.movingUp = true;
       }
     }
-    this.fabricObject.set({
-      left: this.x,
-      top: this.y
-    });
+    this.graphic.position.set(this.x, this.y);
   }
-
-  render(fabricCanvas) {
-    fabricCanvas.add(this.fabricObject);
+  
+  render(stage) {
+    this.graphic.beginFill(0x000000, 1);
+    this.graphic.drawCircle(this.x, this.y, 5);
+    
+    stage.addChild(this.graphic);
   }
 }

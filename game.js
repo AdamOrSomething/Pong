@@ -6,8 +6,14 @@ class Game {
       transparent: true,
       antialias: true
     });
-    this.paddle = new Paddle(480);
+    this.paddle = new Paddle(480, 3);
+    this.paddle2 = new Paddle(480, 717);
     this.ball = new Ball(720, 480);
+    this.score = 0;
+    this.scoreGraphic = new PIXI.Text(this.score, {
+      fontFamily: 'Arial',
+      fontSize: 18
+    });
     this.up = false;
     this.down = false;
     this.initialRender();
@@ -18,6 +24,11 @@ class Game {
   initialRender() {
     this.ball.render(this.app.stage);
     this.paddle.render(this.app.stage);
+    this.paddle2.render(this.app.stage);
+    
+    this.scoreGraphic.position.set(700, 10);
+    this.app.stage.addChild(this.scoreGraphic);
+    
     document.body.appendChild(this.app.view);
   }
   
@@ -49,13 +60,38 @@ class Game {
       this.paddle.down();
     }
     
+    const paddleCenter = this.paddle2.bottomY - 15;
+    
+    if (this.ball.y !== paddleCenter) {
+      if (paddleCenter > this.ball.y) {
+        this.paddle2.up();
+      } else {
+        this.paddle2.down();
+      }
+    }
+    
     if (this.ball.x - 5 <= 4) {
       const paddleBottom = this.paddle.bottomY;
       const paddleTop = this.paddle.bottomY - 30;
       const ballTop = this.ball.y - 5;
       const ballBottom = this.ball.y + 5;
-      if(ballTop < paddleBottom && ballBottom > paddleTop) {
+      if (ballTop < paddleBottom && ballBottom > paddleTop) {
         this.ball.movingLeft = false;
+        this.score++;
+        this.scoreGraphic.text = this.score;
+      } else {
+        if (this.ball.endGame) {
+          this.gameOver();
+          return;
+        }
+      }
+    } else if (this.ball.x + 5 >= 716) {
+      const paddleBottom = this.paddle2.bottomY;
+      const paddleTop = this.paddle2.bottomY - 30;
+      const ballTop = this.ball.y - 5;
+      const ballBottom = this.ball.y + 5;
+      if (ballTop < paddleBottom && ballBottom > paddleTop) {
+        this.ball.movingLeft = true;
       } else {
         if (this.ball.endGame) {
           this.gameOver();

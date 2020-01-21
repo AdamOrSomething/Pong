@@ -18,7 +18,7 @@ class Ball {
     } else {
       this.x += 2;
       if (this.x + 5 >= this.width) {
-        this.movingLeft = true;
+        this.endGame = true;
       }
     }
     if (this.movingUp) {

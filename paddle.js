@@ -1,6 +1,7 @@
 class Paddle {
-  constructor(height) {
+  constructor(height, x) {
     this.height = height;
+    this.x = x;
     this.bottomY = this.height / 2 - 10;
     this.graphic = new PIXI.Graphics();
   }
@@ -20,7 +21,7 @@ class Paddle {
   }
   
   setPos() {
-    this.graphic.position.set(3, this.bottomY);
+    this.graphic.position.set(this.x, this.bottomY);
   }
   
   render(stage) {

@@ -14,8 +14,6 @@ class Game {
       fontFamily: 'Arial',
       fontSize: 18
     });
-    this.up = false;
-    this.down = false;
     this.initialRender();
     this.registerEventListeners();
     this.start();
@@ -35,17 +33,29 @@ class Game {
   registerEventListeners() {
     window.onkeydown = e => {
       if (e.key === "ArrowUp") {
-        this.up = true;
+        this.up2 = true;
       }
       if (e.key === "ArrowDown") {
+        this.down2 = true;
+      }
+      if (e.key === "w") {
+        this.up = true;
+      }
+      if (e.key === "s") {
         this.down = true;
       }
     };
     window.onkeyup = e => {
       if (e.key === "ArrowUp") {
-        this.up = false;
+        this.up2 = false;
       }
       if (e.key === "ArrowDown") {
+        this.down2 = false;
+      }
+      if (e.key === "w") {
+        this.up = false;
+      }
+      if (e.key === "s") {
         this.down = false;
       }
     }
@@ -59,8 +69,14 @@ class Game {
     if (this.down) {
       this.paddle.down();
     }
+    if (this.up2) {
+      this.paddle2.up();
+    }
+    if (this.down2) {
+      this.paddle2.down();
+    }
     
-    const paddleCenter = this.paddle2.bottomY - 15;
+    /*const paddleCenter = this.paddle2.bottomY - 15;
     
     if (this.ball.y !== paddleCenter) {
       if (paddleCenter > this.ball.y) {
@@ -68,7 +84,7 @@ class Game {
       } else {
         this.paddle2.down();
       }
-    }
+    }*/
     
     if (this.ball.x - 5 <= 4) {
       const paddleBottom = this.paddle.bottomY;

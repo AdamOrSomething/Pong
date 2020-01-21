@@ -51,15 +51,24 @@ class Game {
     
     if (this.ball.x - 5 <= 4) {
       const paddleBottom = this.paddle.bottomY;
-      const paddleTop = this.paddle.bottomY - 20;
+      const paddleTop = this.paddle.bottomY - 30;
       const ballTop = this.ball.y - 5;
       const ballBottom = this.ball.y + 5;
       if(ballTop < paddleBottom && ballBottom > paddleTop) {
         this.ball.movingLeft = false;
+      } else {
+        if (this.ball.endGame) {
+          this.gameOver();
+          return;
+        }
       }
     }
     requestAnimationFrame(() => {
       this.start();
     });
+  }
+  
+  gameOver() {
+  
   }
 }

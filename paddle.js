@@ -6,15 +6,15 @@ class Paddle {
   }
   
   up() {
-    if (this.bottomY - 20 > 0) {
-      this.bottomY--;
+    if (this.bottomY - 30 > 0) {
+      this.bottomY -= 2;
     }
     this.setPos();
   }
   
   down() {
     if (this.bottomY < this.height) {
-      this.bottomY++;
+      this.bottomY += 2;
     }
     this.setPos();
   }
@@ -26,7 +26,7 @@ class Paddle {
   render(stage) {
     this.graphic.lineStyle(2, 0x000000, 1);
     this.graphic.moveTo(0, 0);
-    this.graphic.lineTo(0, -20);
+    this.graphic.lineTo(0, -30);
     
     this.setPos();
     

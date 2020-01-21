@@ -11,20 +11,24 @@ class Ball {
   
   tick() {
     if (this.movingLeft) {
-      if (--this.x === 0) {
-        this.movingLeft = false;
+      this.x -= 2;
+      if (this.x - 5 <= 0) {
+        this.endGame = true;
       }
     } else {
-      if (++this.x === this.width) {
+      this.x += 2;
+      if (this.x + 5 >= this.width) {
         this.movingLeft = true;
       }
     }
     if (this.movingUp) {
-      if (--this.y === 0) {
+      this.y -= 2;
+      if (this.y - 5 <= 0) {
         this.movingUp = false;
       }
     } else {
-      if (++this.y === this.height) {
+      this.y += 2;
+      if (this.y + 5 >= this.height) {
         this.movingUp = true;
       }
     }

@@ -24,7 +24,8 @@ class Game {
     this.paddle.render(this.app.stage);
     this.paddle2.render(this.app.stage);
     
-    this.scoreGraphic.position.set(700, 10);
+    this.scoreGraphic.anchor.set(0.5, 0.5);
+    this.scoreGraphic.position.set(720 / 2, 10);
     this.app.stage.addChild(this.scoreGraphic);
     
     document.body.appendChild(this.app.view);
@@ -121,6 +122,13 @@ class Game {
   }
   
   gameOver() {
-  
+    const gameOverText = new PIXI.Text('Game Over', {
+      fontFamily: 'Arial',
+      fontSize: 48,
+      fill: 0xFF0000
+    });
+    gameOverText.anchor.set(0.5, 0.5);
+    gameOverText.position.set(720 / 2, 480 / 2);
+    this.app.stage.addChild(gameOverText);
   }
 }

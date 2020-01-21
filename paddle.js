@@ -1,16 +1,21 @@
 class Paddle {
   constructor(height) {
-    this.bottomY = height / 2 - 10;
+    this.height = height;
+    this.bottomY = this.height / 2 - 10;
     this.graphic = new PIXI.Graphics();
   }
   
   up() {
-    this.bottomY--;
+    if (this.bottomY - 20 > 0) {
+      this.bottomY--;
+    }
     this.setPos();
   }
   
   down() {
-    this.bottomY++;
+    if (this.bottomY < this.height) {
+      this.bottomY++;
+    }
     this.setPos();
   }
   
@@ -21,7 +26,7 @@ class Paddle {
   render(stage) {
     this.graphic.lineStyle(2, 0x000000, 1);
     this.graphic.moveTo(0, 0);
-    this.graphic.lineTo(0, 20);
+    this.graphic.lineTo(0, -20);
     
     this.setPos();
     

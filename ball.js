@@ -20,11 +20,11 @@ class Ball {
       }
     }
     if (this.movingUp) {
-      if (++this.y === this.height) {
+      if (--this.y === 0) {
         this.movingUp = false;
       }
     } else {
-      if (--this.y === 0) {
+      if (++this.y === this.height) {
         this.movingUp = true;
       }
     }

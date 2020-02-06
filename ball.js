@@ -11,23 +11,23 @@ class Ball {
   
   tick() {
     if (this.movingLeft) {
-      this.x -= 2;
+      this.x -= 3;
       if (this.x - 5 <= 0) {
         this.endGame = true;
       }
     } else {
-      this.x += 2;
+      this.x += 3;
       if (this.x + 5 >= this.width) {
         this.endGame = true;
       }
     }
     if (this.movingUp) {
-      this.y -= 2;
+      this.y -= 3;
       if (this.y - 5 <= 0) {
         this.movingUp = false;
       }
     } else {
-      this.y += 2;
+      this.y += 3;
       if (this.y + 5 >= this.height) {
         this.movingUp = true;
       }

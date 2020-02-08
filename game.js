@@ -155,7 +155,7 @@ class Game {
             this.paddle2.resetColor();
           }
         }
-        this.recalculateBallPath();
+        this.projectionBall.y = 240;
       } else {
         if (this.ball.endGame) {
           this.gameOver();

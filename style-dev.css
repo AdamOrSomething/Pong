@@ -1,0 +1,18 @@
+canvas {
+  border: black 1px solid;
+  float: left;
+  margin-right: 2em;
+}
+
+#game {
+  width: 100%;
+}
+
+#player-controls {
+  display: flex;
+  justify-content: space-around;
+}
+
+#player-controls span {
+  display: block;
+}

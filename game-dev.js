@@ -47,7 +47,7 @@ class Game {
     window.onkeydown = e => {
       // player 1
       switch (e.key) {
-        // positive is down
+          // positive is down
         case 'w':
           this.paddle.direction = -1;
           break;
@@ -63,7 +63,7 @@ class Game {
       // player 2
       if (!this.ai) {
         switch (e.key) {
-          // positive is down
+            // positive is down
           case 'ArrowUp':
             this.paddle2.direction = -1;
             break;
@@ -104,14 +104,14 @@ class Game {
   
   step() {
     // move the paddles
-    this.paddle.move();
+    this.movePaddles();
     
-    /*this.ball.tick();
-    if (this.powered) {
+    // move the ball
+    this.ball.move();
+    
+    /*if (this.powered) {
       this.ball.tick();
-    }
-    this.paddle.tick();
-    this.paddle2.tick();*/
+    }*/
     
     /*if (this.score % 3 === 0 && this.score !== 0) {
       this.paddle.power();
@@ -179,6 +179,16 @@ class Game {
     }
     */
     requestAnimationFrame(() => this.step());
+  }
+  
+  movePaddles() {
+    // paddle 1
+    // check that not going above or below screen
+    let paddleBottom = this.paddle.graphic.y + Paddle.HALF_HEIGHT;
+    let paddleTop = this.paddle.graphic.y - Paddle.HALF_HEIGHT;
+    if (paddleBottom <= Game.HEIGHT && paddleTop >= 0) {
+      this.paddle.move();
+    }
   }
   
   recalculateBallPath() {
